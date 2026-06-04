@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gus Gaming Zone - Noticias BO7 End Game Temporada 04</title>
+    <style>
+        /* Reset y Estilos Base */
+        *, *::before, *::after { box-sizing: border-box; }
+        body { margin: 0; padding: 0; background-color: #0d0f12; color: #e2e8f0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; }
+        
+        .container { max-width: 950px; margin: 40px auto; background-color: #141820; border: 1px solid #222d3d; border-radius: 12px; padding: 40px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); }
+
+        /* Header de la Marca */
+        .brand-header { text-align: center; margin-bottom: 40px; border-bottom: 1px solid #222d3d; padding-bottom: 30px; }
+        .brand-header img { width: 100%; max-width: 360px; height: auto; }
+
+        /* Contenedor de la Noticia Principal */
+        .news-meta { font-size: 10pt; color: #00e676; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; margin-bottom: 10px; }
+        h1 { font-size: 30pt; color: #ffffff; margin: 0 0 20px 0; text-transform: uppercase; letter-spacing: 1px; line-height: 1.2; font-weight: 800; }
+        
+        /* Imágenes con efecto Zoom */
+        .zoomable-img { cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .zoomable-img:hover { transform: scale(1.015); box-shadow: 0 10px 25px rgba(255, 70, 85, 0.25); }
+
+        .featured-banner { width: 100%; border-radius: 8px; border: 1px solid #ff4655; margin-bottom: 30px; box-shadow: 0 5px 20px rgba(255, 70, 85, 0.15); }
+
+        h2 { font-size: 18pt; color: #ffffff; margin-top: 40px; margin-bottom: 15px; border-left: 5px solid #ff4655; padding-left: 12px; text-transform: uppercase; }
+        p { color: #b9c4d4; font-size: 11pt; margin-bottom: 20px; text-align: justify; }
+        strong { color: #ffffff; }
+
+        /* COMPONENTE: BRIEFING TÁCTICO (ESTILO IMAGE_5D57BF.PNG) */
+        .briefing-box { background-color: #1a1f29; border: 1px solid #6b8c14; border-radius: 6px; overflow: hidden; margin: 30px 0; }
+        .briefing-header { background: linear-gradient(90deg, #6b8c14, #4e660e); color: #ffffff; padding: 12px 20px; font-weight: 800; font-size: 12pt; text-transform: uppercase; letter-spacing: 1.5px; border-bottom: 1px solid #6b8c14; }
+        .briefing-row { padding: 20px; border-bottom: 1px solid #222d3d; font-size: 10.5pt; color: #b9c4d4; }
+        .briefing-row:last-child { border-bottom: none; }
+        .briefing-row:nth-child(even) { background-color: #151922; }
+        .briefing-row strong.title { color: #ffffff; font-size: 11pt; display: inline-block; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid #ff4655; padding-bottom: 20px; border-bottom: none; padding-bottom: 0; }
+        .briefing-row strong.title::after { content: " — "; color: #6b8c14; }
+        
+        /* Lista Táctica de Prestigio */
+        .prestige-list { color: #b9c4d4; padding-left: 20px; margin-bottom: 25px; list-style-type: square; }
+        .prestige-list li { margin-bottom: 10px; font-size: 11pt; }
+        .prestige-list strong { color: #ff4655; }
+
+        /* Grillas de Contenido Táctico */
+        .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin: 30px 0; }
+        .news-card { background-color: #1a202c; border: 1px solid #222d3d; border-radius: 8px; overflow: hidden; }
+        .news-card img { width: 100%; height: 200px; object-fit: cover; border-bottom: 1px solid #222d3d; }
+        .news-card-body { padding: 20px; }
+        .news-card-body h3 { margin: 0 0 10px 0; font-size: 13pt; color: #ff4655; text-transform: uppercase; }
+
+        /* Callouts Destacados */
+        .alert-box { background-color: rgba(0, 230, 118, 0.05); border: 1px solid rgba(0, 230, 118, 0.2); border-left: 4px solid #00e676; padding: 20px; border-radius: 6px; margin: 25px 0; }
+        .alert-box p { margin: 0; color: #e2e8f0; font-size: 10.5pt; }
+
+        /* Bloque de Redes Sociales */
+        .social-section { text-align: center; margin-top: 50px; padding-top: 30px; border-top: 1px solid #222d3d; }
+        .social-title { font-size: 12pt; text-transform: uppercase; color: #fff; letter-spacing: 2px; margin-bottom: 20px; font-weight: bold; }
+        .social-buttons { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .btn-social { padding: 12px 25px; border-radius: 6px; font-weight: bold; text-decoration: none; color: #fff; text-transform: uppercase; font-size: 9.5pt; transition: transform 0.2s; }
+        .btn-social:hover { transform: translateY(-2px); filter: brightness(1.1); }
+        .btn-discord { background-color: #5865F2; }
+        .btn-whatsapp { background-color: #25D366; color: #000; }
+        .btn-tiktok { background-color: #000; border: 1px solid #ff4655; }
+
+        .footer { text-align: center; font-size: 9pt; color: #718096; margin-top: 40px; }
+
+        /* MODAL DE EXPANSIÓN (LIGHTBOX) */
+        .image-modal { display: none; position: fixed; z-index: 9999; padding-top: 40px; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(5, 7, 10, 0.95); backdrop-filter: blur(5px); cursor: zoom-out; }
+        .modal-wrapper { display: flex; justify-content: center; align-items: center; min-height: 85vh; padding: 20px; }
+        .modal-content { width: 100%; max-width: 1100px; max-height: 85vh; object-fit: contain; border-radius: 6px; border: 2px solid #ff4655; box-shadow: 0 0 30px rgba(255, 70, 85, 0.4); animation: zoomAnimation 0.25s ease-out; }
+        .close-modal-btn { position: absolute; top: 20px; right: 30px; color: #ffffff; font-size: 30pt; font-weight: bold; cursor: pointer; transition: color 0.2s; }
+        .close-modal-btn:hover { color: #ff4655; }
+
+        @keyframes zoomAnimation {
+            from { transform: scale(0.85); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .container { margin: 15px; padding: 20px; width: auto; }
+            .brand-header img { max-width: 240px; }
+            h1 { font-size: 20pt; }
+            h2 { font-size: 14pt; }
+            .news-grid { grid-template-columns: 1fr; }
+            .social-buttons { flex-direction: column; }
+            .btn-social { width: 100%; text-align: center; }
+            .modal-content { border-width: 1px; max-height: 75vh; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header de Marca Unificado -->
+    <div class="brand-header">
+        <img src="https://gusgamingzone.github.io/guia1/logo.svg" alt="Gus Gaming Zone Logo">
+    </div>
+
+    <!-- Encabezado de Noticia -->
+    <div class="news-meta">Transmisión de Inteligencia Oficial • Temporada 04</div>
+    <h1>Análisis Táctico: Todo lo Nuevo que llega al Modo End Game en la Temporada 04</h1>
+    
+    <img src="BO7-SEASON-04-ANNOUNCEMENT-001.webp" alt="Temporada 04 End Game" class="featured-banner zoomable-img" onclick="expandirImagen(this)">
+
+    <p>¡Atención, comunidad! Los canales oficiales de Activision han liberado los detalles operativos para el despliegue de la <strong>Temporada 04 de Black Ops 7 y Warzone</strong>. En este reporte estratégico nos saltamos el multijugador base para concentrarnos exclusivamente en el desglose de información crítica sobre la masiva expansión del modo cooperativo <strong>End Game</strong> en Avalon. Preparen sus estaciones en PS5, porque las dinámicas de extracción van a cambiar por completo.</p>
+
+    <!-- COMPONENTE INYECTADO: BRIEFING TÁCTICO DE CONTENIDO (BASADO EN IMAGE_5D57BF.PNG) -->
+    <div class="briefing-box">
+        <div class="briefing-header">Acceso Libre: Resumen de Contenido End Game</div>
+        
+        <div class="briefing-row">
+            <strong class="title">Operaciones Expandidas</strong> Al inicio de la temporada, *The Guild* contraataca en la <strong>Operación Wall Breaker</strong>, trayendo nuevos desafíos y recompensas junto a la letal falla <em>Command Killer Glitch Fracture</em>. A mitad de temporada, la guerra continúa sin tregua con el despliegue de la <strong>Operación King Killer</strong>.
+        </div>
+        
+        <div class="briefing-row">
+            <strong class="title">Prestigio de Operador</strong> Alcanza hitos históricos en el End Game. Llega al nivel máximo de <em>Combat Rating</em> y activa el Prestigio para desbloquear personalizaciones extremas en tu estilo de juego, ¡incluyendo una ranura Exótica extra, una ranura Pesadilla extra y una cuarta línea de habilidades activa!
+        </div>
+        
+        <div class="briefing-row">
+            <strong class="title">Nueva Línea y Dos Habilidades</strong> Haz picadillo a tus enemigos en el campo con la incorporación de la letal habilidad mayor <strong>Death Machine (Minigun)</strong>. Además, durante la mitad de temporada, tendrás acceso a la nueva línea de habilidades <strong>Guardian</strong> junto con la desestabilizadora habilidad menor <strong>Psych Grenade</strong>.
+        </div>
+    </div>
+
+    <h2>1. Acto III: Operación Wall Breaker y la Zona Nightmare</h2>
+    <p>La filtración del mapa de progresión de la campaña cooperativa confirma el despliegue del esperado <strong>Acto III: Operación Wall Breaker</strong>. Según los registros de la interfaz táctica filtrada, las escuadras se enfrentarán a la reestructuración cibernética de la red de Avalon controlada por The Guild.</p>
+    
+    <div class="news-grid">
+        <div class="news-card">
+            <img src="BO7-SEASON-04-ANNOUNCEMENT-003.webp" alt="Progreso Operación Wall Breaker" class="zoomable-img" onclick="expandirImagen(this)">
+            <div class="news-card-body">
+                <h3>El Glitch Boss Definitivo</h3>
+                <p>Las misiones escalarán a través de 10 fases extremas en la nueva dificultad <strong>Zone: Nightmare</strong>. El despliegue final requerirá interceptar convoyes poseídos y ejecutar la misión <em>Glitch Step: Command Killer</em>.</p>
+            </div>
+        </div>
+        <div class="news-card">
+            <img src="BO7-SEASON-04-ANNOUNCEMENT-002.webp" alt="Oso Mutado de Avalon" class="zoomable-img" onclick="expandirImagen(this)">
+            <div class="news-card-body">
+                <h3>Fauna Infectada de Élite</h3>
+                <p>Se confirma la integración de armas pesadas de mano como miniguns para limpiar sectores infectados de alta densidad y la aparición de nuevas amenazas biológicas salvajes, incluyendo especímenes mutados de osos grizzly acorazados.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="alert-box">
+        <p><strong>RECOMPENSAS EXCLUSIVAS DE TEMPORADA:</strong> Completar el Acto III desbloqueará de forma permanente el proyecto de arma exótico <strong>"Cold Shoulder"</strong> y la tarjeta de visita de prestigio "Terms of Disservice". Además, abatir al jefe final del Glitch usando a los operadores 50/50, Razor o Falkner otorgará los aspectos de operador de la serie <em>Shatter Shock</em>. Coleccionar los tres desbloquea un camuflaje animado universal.</p>
+    </div>
+
+    <h2>2. Evolución del Armamento: Sistema de Prestigio del Operador</h2>
+    <p>La gran bomba de la Temporada 04 es la introducción del <strong>Prestigio de Operador</strong>. Al alcanzar el nivel máximo de Combat Rating (CR), tendrás la opción de reiniciar por completo a tu personaje para iniciar un nuevo viaje de nivelación a cambio de desbloquear un poder permanente masivo.</p>
+
+    <div class="news-grid" style="grid-template-columns: 1fr;">
+        <div class="news-card" style="display: flex; flex-wrap: wrap;">
+            <img src="BO7-SEASON-04-ANNOUNCEMENT-004.webp" alt="Menú de Modificaciones Exóticas" class="zoomable-img" style="width: 100%; max-width: 450px; height: auto; object-fit: cover;" onclick="expandirImagen(this)">
+            <div class="news-card-body" style="flex: 1; min-width: 300px;">
+                <h3>El Sacrificio por el Poder Absoluto</h3>
+                <p>Activar el Prestigio tiene un costo inmediato y severo: <strong>elimina todas tus habilidades equipadas, reinicia tu CR a cero, descarta tus adquisiciones de campo y devuelve tus armas de armamento a su rareza base</strong>. Te toca volver a desplegarte en Avalon en un estado completamente limpio.</p>
+                <p>Sin embargo, cada nivel de Prestigio te otorga acceso a conjuntos de habilidades adicionales imposibles de conseguir de otra manera:</p>
+                <ul class="prestige-list">
+                    <li><strong>Prestigio 1:</strong> Desbloquea una ranura de habilidad exótica extra (Extra Exotic Skill Slot).</li>
+                    <li><strong>Prestigio 2:</strong> Desbloquea una ranura de habilidad pesadilla extra (Extra Nightmare Skill Slot).</li>
+                    <li><strong>Prestigio 3:</strong> Te permite equipar una 4.ª línea de habilidades completa (4th Skill Track) para alcanzar el estado definitivo 50/50 de combate.</li>
+                </ul>
+                <p>Este sistema redefine por completo la economía del End Game, obligando a las escuadras a coordinar quiénes reinician su progreso y quiénes mantienen el armamento exótico para escoltar las extracciones en dificultad Nightmare.</p>
+            </div>
+        </div>
+    </div>
+
+    <img src="BO7-SEASON-04-ANNOUNCEMENT-006.webp" alt="Despliegue de Infantería de Avalon" class="featured-banner zoomable-img" style="border-color: #00e676; margin-top: 20px; box-shadow: 0 5px 20px rgba(0, 230, 118, 0.15);" onclick="expandirImagen(this)">
+
+    <h2>3. Preparación de la Comunidad</h2>
+    <p>Con la llegada de la dificultad Nightmare y los reinicios de Prestigio, el juego coordinado ya no es opcional. Dominar los atributos de tus personajes e inscribirse en las actividades de entrenamiento internas de la comunidad será el único método real para asegurar las extracciones con éxito sin perder tus pertrechos exóticos acumulados.</p>
+
+    <div class="social-section">
+        <div class="social-title">Canales de Despliegue de La Zona de Comando</div>
+        <div class="social-buttons">
+            <a href="https://discord.gg/TU_ENLACE_AQUI" target="_blank" class="btn-social btn-discord">Comunidad Discord</a>
+            <a href="https://chat.whatsapp.com/TU_ENLACE_AQUI" target="_blank" class="btn-social btn-whatsapp">Alertas de WhatsApp</a>
+            <a href="https://www.tiktok.com/@gusgamingzone" target="_blank" class="btn-social btn-tiktok">Análisis en TikTok</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Gus Gaming Zone © 2026 • Inteligencia Táctica de Black Ops 7 End Game</p>
+    </div>
+</div>
+
+<div id="lightboxModal" class="image-modal" onclick="cerrarImagen()">
+    <span class="close-modal-btn">&times;</span>
+    <div class="modal-wrapper">
+        <img id="imgAmpliada" class="modal-content" alt="Vista Ampliada">
+    </div>
+</div>
+
+<script>
+    function expandirImagen(elemento) {
+        const modal = document.getElementById("lightboxModal");
+        const imagenModal = document.getElementById("imgAmpliada");
+        modal.style.display = "block";
+        imagenModal.src = elemento.src;
+        document.body.style.overflow = "hidden";
+    }
+
+    function cerrarImagen() {
+        const modal = document.getElementById("lightboxModal");
+        modal.style.display = "none";
+        document.body.style.overflow = "auto";
+    }
+</script>
+
+</body>
+</html>
